@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "django>=6.1.2",
+    "psycopg[binary]>=3.3.6",
     "pydantic>=2.14.1",
     "pydantic-settings>=2.16.2",
 ]
@@ -16,3 +17,53 @@ booking-service = "booking_service:main"
 [build-system]
 requires = ["uv_build>=0.12.20,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pre-commit>=4.7.0",
+    "ruff>=0.17.3",
+    "typing-extensions>=4.16.0",
+]
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src", "app"]
+extend-exclude = [".venv", "venv", "build", "dist", "__pycache__", "migrations"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "W", "I", "UP", "B", "SIM"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "src"]
+combine-as-imports = true
+force-sort-within-sections = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+
+follow_imports = "silent"
+warn_redundant_casts = true
+disallow_any_generics = true
+no_implicit_reexport = true
+disallow_untyped_defs = true
+python_version = "3.13"
+ignore_missing_imports = true
+warn_unused_configs = true
+check_untyped_defs = true
+disallow_incomplete_defs = true
+no_implicit_optional = true
+
+[tool.pydantic.mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
