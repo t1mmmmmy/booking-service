@@ -6,6 +6,8 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "django>=6.1.2",
+    "djangorestframework>=3.18.3",
+    "djangorestframework-stubs>=3.18.1",
     "psycopg2-binary>=2.9.13",
     "pydantic>=2.14.1",
     "pydantic-settings>=2.16.2",
@@ -49,7 +51,12 @@ line-ending = "lf"
 docstring-code-format = true
 
 [tool.mypy]
-plugins = ["pydantic.mypy"]
+plugins = [
+    "pydantic.mypy",
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main"
+]
+mypy_path = "src"
 
 exclude = ['(^|/)migrations/']
 follow_imports = "silent"
@@ -68,3 +75,6 @@ no_implicit_optional = true
 init_forbid_extra = true
 init_typed = true
 warn_required_dynamic_aliases = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
