@@ -24,6 +24,7 @@ build-backend = "uv_build"
 dev = [
     "mypy>=2.4.1",
     "pre-commit>=4.7.0",
+    "pytest-django>=4.14.0",
     "ruff>=0.17.3",
     "typing-extensions>=4.16.0",
 ]
@@ -78,3 +79,9 @@ warn_required_dynamic_aliases = true
 
 [tool.django-stubs]
 django_settings_module = "config.settings"
+
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+pythonpath = ["src"]
+testpaths = ["src/apps/catalog/tests"]

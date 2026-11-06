@@ -8,7 +8,7 @@ WORKDIR /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     --mount=type=bind,source=uv.lock,target=uv.lock \
-    uv sync --frozen --no-install-project --no-dev
+    uv sync --frozen --no-install-project
 
 FROM python:3.13-alpine
 WORKDIR /app
