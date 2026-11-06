@@ -9,7 +9,7 @@ Python 3.13+, Django REST Framework, PostgreSQL 18, uv, Docker Compose, pydantic
 Нужны Git и запущенный Docker с Docker Compose. Команды для PowerShell:
 
 ```powershell
-git clone --branch dev https://github.com/t1mmmmmy/booking-service.git
+git clone https://github.com/t1mmmmmy/booking-service.git
 cd booking-service
 Copy-Item .env.example .env
 ```
